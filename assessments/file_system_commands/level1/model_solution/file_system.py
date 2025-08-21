@@ -14,25 +14,25 @@ class FileSystemSimulator:
         self.files = {}  # filename -> file_data
     
     def upload_file(self, filename, size):
-        """Upload a file to the system."""
+        """Upload a file to the system. Returns success status."""
         self.files[filename] = {
             'filename': filename,
             'size': size,
             'uploaded_at': time.time()
         }
-        return f"uploaded {filename}"
+        return True  # Success
     
     def get_file(self, filename):
-        """Retrieve a file from the system."""
+        """Retrieve a file from the system. Returns file data or None."""
         if filename not in self.files:
-            return "file not found"
+            return None
         
-        return f"got {filename}"
+        return self.files[filename]  # Return actual file data
     
     def copy_file(self, source, dest):
-        """Copy a file to a new name."""
+        """Copy a file to a new name. Returns success status."""
         if source not in self.files:
-            return "source file not found"
+            return False  # Failure
         
         # Create copy with same data
         source_file = self.files[source]
@@ -42,14 +42,14 @@ class FileSystemSimulator:
             'uploaded_at': time.time()
         }
         
-        return f"copied {source} to {dest}"
+        return True  # Success
     
     def file_exists(self, filename):
-        """Check if a file exists."""
+        """Check if a file exists. Returns boolean."""
         return filename in self.files
     
     def search_files(self, query):
-        """Search for files by name prefix."""
+        """Search for files by name prefix. Returns list of filenames."""
         matching_files = []
         for filename in self.files:
             if query in filename:
@@ -57,17 +57,17 @@ class FileSystemSimulator:
         
         # Sort for consistent test results
         matching_files.sort()
-        
-        if matching_files:
-            return f"found {matching_files}"
-        else:
-            return "found []"
+        return matching_files  # Return actual list
 
 
 def simulate_coding_framework(commands):
     """
     MAIN FUNCTION: Parse commands and execute file operations.
     This is the EXACT pattern Anthropic uses.
+    
+    Now properly separates return values from logging:
+    - Methods return actual data
+    - Framework handles logging and formatting
     """
     
     fs = FileSystemSimulator()
@@ -79,26 +79,38 @@ def simulate_coding_framework(commands):
         if cmd_type == "FILE_UPLOAD":
             # ["FILE_UPLOAD", "Cars.txt", "200kb"]
             filename, size = command[1], command[2]
-            result = fs.upload_file(filename, size)
-            results.append(result)
+            success = fs.upload_file(filename, size)
+            if success:
+                results.append(f"uploaded {filename}")
+            else:
+                results.append(f"failed to upload {filename}")
             
         elif cmd_type == "FILE_GET":
             # ["FILE_GET", "Cars.txt"]
             filename = command[1]
-            result = fs.get_file(filename)
-            results.append(result)
+            file_data = fs.get_file(filename)
+            if file_data:
+                results.append(f"got {filename}")
+            else:
+                results.append("file not found")
             
         elif cmd_type == "FILE_COPY":
             # ["FILE_COPY", "Cars.txt", "Cars2.txt"]
             source, dest = command[1], command[2]
-            result = fs.copy_file(source, dest)
-            results.append(result)
+            success = fs.copy_file(source, dest)
+            if success:
+                results.append(f"copied {source} to {dest}")
+            else:
+                results.append("source file not found")
             
         elif cmd_type == "FILE_SEARCH":
             # ["FILE_SEARCH", "Ba"]
             query = command[1]
-            result = fs.search_files(query)
-            results.append(result)
+            matching_files = fs.search_files(query)
+            if matching_files:
+                results.append(f"found {matching_files}")
+            else:
+                results.append("found []")
     
     return results
 
@@ -130,3 +142,4 @@ if __name__ == "__main__":
         print("❌ Need to fix implementation")
     
     print("\nThis is the EXACT Anthropic CodeSignal pattern!")
+    print("Now with proper OOP: methods return data, framework handles logging!")
