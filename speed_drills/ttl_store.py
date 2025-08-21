@@ -1,97 +1,56 @@
 """
-Speed Drill: TTL Store Implementation
-Implement a key-value store with automatic expiration.
+SPEED DRILL 3: Time-based Operations (TTL Pattern)
+Implement the TTLStore class to pass all tests.
 """
 
 import time
-from typing import Any, Optional
 
 
 class TTLStore:
     """
-    A key-value store where values automatically expire after a specified time.
+    A key-value store with automatic expiration (TTL).
+    
+    IMPLEMENT THESE METHODS:
+    - __init__(self): Initialize storage
+    - set(self, key, value, ttl_seconds): Set with expiration
+    - get(self, key): Get if not expired, None if expired
+    - delete(self, key): Manual deletion
+    - get_all_keys(self): Get all non-expired keys
+    - cleanup_expired(self): Remove all expired items
     """
     
     def __init__(self):
         """Initialize the TTL store."""
-        # TODO: Implement storage structure
+        # TODO: Implement storage for data and expiry times
         pass
     
-    def set(self, key: str, value: Any, ttl_seconds: int) -> bool:
-        """
-        Set a key-value pair with expiration time.
-        
-        Args:
-            key: The key
-            value: The value to store
-            ttl_seconds: Time to live in seconds
-            
-        Returns:
-            True if set successfully
-        """
-        # TODO: Implement TTL set
+    def set(self, key, value, ttl_seconds):
+        """Set a key-value pair with expiration time."""
+        # TODO: Store value and calculate expiry timestamp
         pass
     
-    def get(self, key: str) -> Optional[Any]:
-        """
-        Get a value by key if it hasn't expired.
-        
-        Args:
-            key: The key to retrieve
-            
-        Returns:
-            The value if not expired, None otherwise
-        """
-        # TODO: Implement TTL get with expiration check
+    def get(self, key):
+        """Get value if not expired, return None if expired."""
+        # TODO: Check expiry and return value or None
         pass
     
-    def delete(self, key: str) -> bool:
-        """
-        Delete a key-value pair.
-        
-        Args:
-            key: The key to delete
-            
-        Returns:
-            True if deleted, False if key didn't exist
-        """
-        # TODO: Implement delete
+    def delete(self, key):
+        """Manually delete a key-value pair."""
+        # TODO: Implement deletion
         pass
     
-    def get_all_keys(self) -> list[str]:
-        """
-        Get all non-expired keys.
-        
-        Returns:
-            List of valid keys
-        """
-        # TODO: Implement key listing with expiration check
+    def get_all_keys(self):
+        """Get all non-expired keys."""
+        # TODO: Return list of valid keys
         pass
     
-    def cleanup_expired(self) -> int:
-        """
-        Remove all expired key-value pairs.
-        
-        Returns:
-            Number of expired items removed
-        """
-        # TODO: Implement cleanup
+    def cleanup_expired(self):
+        """Remove all expired items. Return count removed."""
+        # TODO: Implement cleanup logic
         pass
 
 
-# Test your implementation
+# Quick test - uncomment when ready
 if __name__ == "__main__":
     store = TTLStore()
-    
-    # Test basic TTL functionality
-    store.set("key1", "value1", 1)  # Expires in 1 second
-    print(f"Get key1: {store.get('key1')}")
-    
-    # Wait for expiration
-    time.sleep(1.1)
-    print(f"Get key1 after expiration: {store.get('key1')}")
-    
-    # Test cleanup
-    store.set("key2", "value2", 0)  # Expires immediately
-    removed = store.cleanup_expired()
-    print(f"Cleaned up {removed} expired items")
+    print("Implement the TTLStore class methods first!")

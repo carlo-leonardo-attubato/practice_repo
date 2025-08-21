@@ -1,38 +1,49 @@
-# Anthropic CodeSignal Preparation Repository
+# CodeSignal Speed Drill Practice Repository
 
-## Overview
-This repository contains preparation materials and practice problems for the Anthropic CodeSignal assessment.
+## What You Have
 
-## Repository Structure
+✅ **Speed Drills** (unimplemented - for you to practice):
+- `basic_store.py` - Basic dictionary operations
+- `nested_userstore.py` - Nested dictionary patterns  
+- `ttl_store.py` - Time-based expiration (TTL)
+- `inventory_system.py` - List filtering operations
+- `backup_restore.py` - Backup/restore functionality
+
+✅ **Unit Tests** (fully implemented and working):
+- `tests/test_01_basic_store.py` - Tests for basic store
+- `tests/test_02_nested_userstore.py` - Tests for user store
+- `tests/test_03_ttl_store.py` - Tests for TTL store
+- `tests/test_04_inventory_system.py` - Tests for inventory
+- `tests/test_05_backup_restore.py` - Tests for database
+
+## How to Practice
+
+1. **Pick a speed drill** (start with `basic_store.py`)
+2. **Implement the methods** marked with TODO
+3. **Run the tests** to see if you pass
+4. **Move to the next drill** when current one passes
+
+## Running Tests
+
+```bash
+# Test specific drill
+python -m pytest tests/test_01_basic_store.py -v
+
+# Test all drills
+python -m pytest tests/ -v
+
+# Quick test from test file
+python tests/test_01_basic_store.py
 ```
-practice_repo/
-├── speed_drills/          # Python speed coding exercises
-├── mock_assessments/      # Full practice assessments
-├── patterns/              # Common coding patterns and templates
-├── requirements.txt       # Python dependencies
-└── README.md             # This file
-```
 
-## Quick Start
-1. Activate virtual environment: `source venv/bin/activate`
-2. Install dependencies: `pip install -r requirements.txt`
-3. Start with speed drills: `python speed_drills/message_store.py`
+## Your Goal
 
-## Study Plan (19 hours remaining)
-- **Tonight**: Foundation building and first mock assessment
-- **Tomorrow AM**: Speed pattern memorization and final practice
-- **Assessment**: 2 PM deadline
-
-## Key Focus Areas
-- Python collections (defaultdict, Counter, deque)
-- Dictionary operations and nested structures
-- TTL patterns and time-based operations
-- CRUD operations (SET/GET/DELETE)
-- Progressive problem solving (4-level format)
+Implement each speed drill so that **ALL TESTS PASS**. This builds the muscle memory you need for CodeSignal.
 
 ## Assessment Strategy
-- Read ALL levels first (5 min)
-- Speed through L1-2 (20 min)
-- Focus maximum effort on L3 (50 min)
-- Attempt whatever you can of L4 (20 min)
-- Target: 520+ out of 600 points (87% test case passage)
+
+- **Level 1-2**: Basic CRUD operations (20-25 min)
+- **Level 3**: Complex filtering and search (40-50 min)  
+- **Level 4**: Advanced features and edge cases (15-20 min)
+
+**Remember**: Working code beats perfect code in CodeSignal!

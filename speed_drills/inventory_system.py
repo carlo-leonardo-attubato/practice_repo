@@ -1,148 +1,42 @@
 """
-Speed Drill: Inventory System Implementation
-Implement an inventory management system with categories and filtering.
+SPEED DRILL 4: List Operations with Filtering
+Implement the Inventory class to pass all tests.
 """
 
-from typing import List, Dict, Optional
-from collections import defaultdict
 
-
-class InventorySystem:
+class Inventory:
     """
-    An inventory management system that supports:
-    - Adding/removing items
-    - Category-based organization
-    - Price range filtering
-    - Stock tracking
+    An inventory system with filtering and search.
+    
+    IMPLEMENT THESE METHODS:
+    - __init__(self): Initialize storage
+    - add_item(self, item_id, category, price): Add inventory item
+    - get_items_by_category(self, category): Filter by category
+    - get_items_in_price_range(self, min_price, max_price): Filter by price
     """
     
     def __init__(self):
-        """Initialize the inventory system."""
+        """Initialize the inventory."""
         # TODO: Implement storage structure
         pass
     
-    def add_item(self, item_id: str, name: str, category: str, price: float, stock: int) -> bool:
-        """
-        Add a new item to inventory.
-        
-        Args:
-            item_id: Unique item identifier
-            name: Item name
-            category: Item category
-            price: Item price
-            stock: Initial stock quantity
-            
-        Returns:
-            True if item was added successfully
-        """
+    def add_item(self, item_id, category, price):
+        """Add an item to inventory."""
         # TODO: Implement item addition
         pass
     
-    def remove_item(self, item_id: str) -> bool:
-        """
-        Remove an item from inventory.
-        
-        Args:
-            item_id: Item identifier to remove
-            
-        Returns:
-            True if item was removed successfully
-        """
-        # TODO: Implement item removal
-        pass
-    
-    def update_stock(self, item_id: str, new_stock: int) -> bool:
-        """
-        Update stock quantity for an item.
-        
-        Args:
-            item_id: Item identifier
-            new_stock: New stock quantity
-            
-        Returns:
-            True if stock was updated successfully
-        """
-        # TODO: Implement stock update
-        pass
-    
-    def get_items_by_category(self, category: str) -> List[Dict]:
-        """
-        Get all items in a specific category.
-        
-        Args:
-            category: Category to filter by
-            
-        Returns:
-            List of items in the category
-        """
+    def get_items_by_category(self, category):
+        """Get all items in a specific category."""
         # TODO: Implement category filtering
         pass
     
-    def get_items_in_price_range(self, min_price: float, max_price: float) -> List[Dict]:
-        """
-        Get items within a price range.
-        
-        Args:
-            min_price: Minimum price (inclusive)
-            max_price: Maximum price (inclusive)
-            
-        Returns:
-            List of items in the price range
-        """
+    def get_items_in_price_range(self, min_price, max_price):
+        """Get items within a price range."""
         # TODO: Implement price range filtering
         pass
-    
-    def get_low_stock_items(self, threshold: int) -> List[Dict]:
-        """
-        Get items with stock below threshold.
-        
-        Args:
-            threshold: Stock threshold
-            
-        Returns:
-            List of items below threshold
-        """
-        # TODO: Implement low stock filtering
-        pass
-    
-    def get_total_value(self) -> float:
-        """
-        Calculate total inventory value.
-        
-        Returns:
-            Total value of all items (price * stock)
-        """
-        # TODO: Implement total value calculation
-        pass
-    
-    def search_items(self, query: str) -> List[Dict]:
-        """
-        Search items by name (case-insensitive).
-        
-        Args:
-            query: Search query
-            
-        Returns:
-            List of matching items
-        """
-        # TODO: Implement search functionality
-        pass
 
 
-# Test your implementation
+# Quick test - uncomment when ready
 if __name__ == "__main__":
-    inventory = InventorySystem()
-    
-    # Test basic functionality
-    inventory.add_item("item1", "Laptop", "Electronics", 999.99, 5)
-    inventory.add_item("item2", "Mouse", "Electronics", 29.99, 20)
-    
-    electronics = inventory.get_items_by_category("Electronics")
-    print(f"Electronics items: {len(electronics)}")
-    
-    total_value = inventory.get_total_value()
-    print(f"Total inventory value: ${total_value:.2f}")
-    
-    # Test search
-    results = inventory.search_items("laptop")
-    print(f"Search results for 'laptop': {len(results)}")
+    inventory = Inventory()
+    print("Implement the Inventory class methods first!")
