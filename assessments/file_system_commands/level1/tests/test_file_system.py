@@ -7,10 +7,12 @@ import pytest
 import sys
 import os
 
-# Add the candidate directory to the path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'candidate'))
+# Import configuration
+from assessments.test_config import get_full_import_path
 
-from file_system import simulate_coding_framework
+# Get the correct import path based on configuration
+import_path = get_full_import_path('file_system_commands', 'level1')
+exec(f"from {import_path} import simulate_coding_framework")
 
 
 class TestFileSystemLevel1:

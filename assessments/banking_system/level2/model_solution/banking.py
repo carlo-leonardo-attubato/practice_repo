@@ -98,6 +98,54 @@ class BankingSystem:
         transactions = self.transactions.get(account_number, [])
         return [t for t in transactions if start_time <= t['timestamp'] <= end_time]
     
+    def transfer(self, from_account, to_account, amount):
+        """Transfer money between accounts."""
+        if from_account not in self.accounts or to_account not in self.accounts:
+            return False
+        
+        if amount <= 0:
+            return False
+        
+        if self.accounts[from_account]['balance'] < amount:
+            return False  # Insufficient funds
+        
+        # Perform transfer
+        self.accounts[from_account]['balance'] -= amount
+        self.accounts[to_account]['balance'] += amount
+        
+        # Record transactions
+        self.transactions[from_account].append({
+            'type': 'transfer_out',
+            'amount': amount,
+            'timestamp': time.time(),
+            'description': f'Transfer to {to_account}'
+        })
+        
+        self.transactions[to_account].append({
+            'type': 'transfer_in',
+            'amount': amount,
+            'timestamp': time.time(),
+            'description': f'Transfer from {from_account}'
+        })
+        
+        return True
+    
+    def get_account_history(self, account_number):
+        """Get account history including transfers."""
+        if account_number not in self.accounts:
+            return []
+        
+        history = []
+        for transaction in self.transactions[account_number]:
+            history.append({
+                'type': transaction['type'],
+                'amount': transaction['amount'],
+                'timestamp': transaction['timestamp'],
+                'description': transaction['description']
+            })
+        
+        return history
+    
     def search_transactions(self, account_number, query):
         """Search transactions by description."""
         transactions = self.transactions.get(account_number, [])

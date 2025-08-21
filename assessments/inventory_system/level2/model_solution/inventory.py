@@ -1,88 +1,119 @@
 """
-LEVEL 2: Enhanced Inventory Management - MODEL SOLUTION
-Enhanced features with filtering and search capabilities.
+LEVEL 2: Enhanced Inventory Features - MODEL SOLUTION
+Category management, search functionality, alerts, and supplier management.
 """
 
+import time
+from collections import defaultdict
 
-class InventoryManager:
-    """Enhanced inventory management system with filtering and search."""
+
+class InventorySystem:
+    """Enhanced inventory system with categories and search."""
     
     def __init__(self):
-        """Initialize the inventory manager."""
-        self.items = {}  # item_id -> item_data
+        """Initialize the enhanced inventory system."""
+        self.items = {}  # item_name -> item_data
+        self.categories = set()  # Set of category names
+        self.suppliers = {}  # supplier_id -> supplier_data
+        self.low_stock_thresholds = {}  # item_name -> threshold
+        self.next_supplier_id = 1001
     
-    # =================== LEVEL 1 METHODS ===================
-    
-    def add_item(self, item_id, name, category, price):
-        """Add a new item to the inventory."""
-        if item_id in self.items:
-            return False
-        
-        self.items[item_id] = {
-            'id': item_id,
-            'name': name,
-            'category': category,
-            'price': price
-        }
+    def add_category(self, category_name):
+        """Add a new category."""
+        self.categories.add(category_name)
         return True
     
-    def get_item(self, item_id):
-        """Retrieve an item by its ID."""
-        return self.items.get(item_id)
+    def add_item(self, name, price, category, quantity, supplier_id=None):
+        """Add a new item to inventory."""
+        if name in self.items:
+            return False
+        
+        self.items[name] = {
+            'name': name,
+            'price': price,
+            'category': category,
+            'quantity': quantity,
+            'supplier_id': supplier_id,
+            'created_at': time.time()
+        }
+        
+        # Add category if it doesn't exist
+        self.categories.add(category)
+        
+        return True
     
-    def remove_item(self, item_id):
-        """Remove an item from the inventory."""
-        if item_id in self.items:
-            del self.items[item_id]
+    def get_item(self, name):
+        """Get item information."""
+        return self.items.get(name)
+    
+    def update_quantity(self, name, new_quantity):
+        """Update item quantity."""
+        if name in self.items:
+            self.items[name]['quantity'] = new_quantity
             return True
         return False
     
-    def list_all_items(self):
-        """Get all items in the inventory."""
-        return list(self.items.values())
-    
-    def get_item_count(self):
-        """Get the total number of items in inventory."""
-        return len(self.items)
-    
-    # =================== LEVEL 2 NEW METHODS ===================
-    
     def get_items_by_category(self, category):
         """Get all items in a specific category."""
-        return [item for item in self.items.values() 
-                if item['category'] == category]
+        return [item for item in self.items.values() if item['category'] == category]
     
-    def get_items_in_price_range(self, min_price, max_price):
-        """Get items within a price range (inclusive)."""
-        return [item for item in self.items.values() 
-                if min_price <= item['price'] <= max_price]
+    def search_items(self, query, exact=False):
+        """Search for items by name."""
+        if exact:
+            return [item for item in self.items.values() if item['name'] == query]
+        else:
+            return [item for item in self.items.values() if query.lower() in item['name'].lower()]
     
-    def search_items_by_name(self, query):
-        """Search items by name (case-insensitive partial match)."""
-        query_lower = query.lower()
-        return [item for item in self.items.values() 
-                if query_lower in item['name'].lower()]
+    def set_low_stock_threshold(self, item_name, threshold):
+        """Set low stock threshold for an item."""
+        self.low_stock_thresholds[item_name] = threshold
     
-    def get_categories(self):
-        """Get all unique categories in the inventory."""
-        categories = set(item['category'] for item in self.items.values())
-        return sorted(list(categories))
+    def get_low_stock_alerts(self):
+        """Get items that are below their low stock threshold."""
+        alerts = []
+        for item_name, threshold in self.low_stock_thresholds.items():
+            if item_name in self.items:
+                item = self.items[item_name]
+                if item['quantity'] <= threshold:
+                    alerts.append({
+                        'name': item_name,
+                        'current_quantity': item['quantity'],
+                        'threshold': threshold
+                    })
+        return alerts
     
-    def get_price_stats(self):
-        """Get price statistics for all items."""
-        if not self.items:
-            return None
+    def add_supplier(self, name, email):
+        """Add a new supplier."""
+        supplier_id = str(self.next_supplier_id)
+        self.next_supplier_id += 1
         
-        prices = [item['price'] for item in self.items.values()]
-        return {
-            'min': min(prices),
-            'max': max(prices),
-            'average': sum(prices) / len(prices)
+        self.suppliers[supplier_id] = {
+            'id': supplier_id,
+            'name': name,
+            'email': email,
+            'created_at': time.time()
         }
+        
+        return supplier_id
+    
+    def get_supplier_info(self, supplier_id):
+        """Get supplier information."""
+        return self.suppliers.get(supplier_id)
+    
+    def get_all_items(self):
+        """Get all items in inventory."""
+        return list(self.items.values())
+    
+    def get_total_value(self):
+        """Calculate total inventory value."""
+        total = 0
+        for item in self.items.values():
+            total += item['price'] * item['quantity']
+        return total
 
 
 if __name__ == "__main__":
-    inventory = InventoryManager()
+    inventory = InventorySystem()
     
     # Test the implementation
     print("Testing Level 2 functionality...")

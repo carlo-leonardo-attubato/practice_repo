@@ -47,6 +47,21 @@ class FileSystemSimulator:
     def file_exists(self, filename):
         """Check if a file exists."""
         return filename in self.files
+    
+    def search_files(self, query):
+        """Search for files by name prefix."""
+        matching_files = []
+        for filename in self.files:
+            if query in filename:
+                matching_files.append(filename)
+        
+        # Sort for consistent test results
+        matching_files.sort()
+        
+        if matching_files:
+            return f"found {matching_files}"
+        else:
+            return "found []"
 
 
 def simulate_coding_framework(commands):
@@ -77,6 +92,12 @@ def simulate_coding_framework(commands):
             # ["FILE_COPY", "Cars.txt", "Cars2.txt"]
             source, dest = command[1], command[2]
             result = fs.copy_file(source, dest)
+            results.append(result)
+            
+        elif cmd_type == "FILE_SEARCH":
+            # ["FILE_SEARCH", "Ba"]
+            query = command[1]
+            result = fs.search_files(query)
             results.append(result)
     
     return results

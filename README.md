@@ -96,6 +96,42 @@ practice_repo/
 
 ## Running Assessments
 
+### Global Test Configuration ⭐ **NEW FEATURE!**
+
+The repository now includes a **global flag system** that allows you to switch between testing candidate solutions and model solutions:
+
+```python
+# File: assessments/test_config.py
+TEST_MODEL_SOLUTIONS = False  # Test candidate solutions (default)
+TEST_MODEL_SOLUTIONS = True   # Test model solutions
+```
+
+**Usage:**
+
+1. **Test Candidate Solutions (Practice Mode):**
+```bash
+cd assessments
+python -m pytest banking_system/level1/  # Tests your implementation
+```
+
+2. **Test Model Solutions (Study Mode):**
+```bash
+# Option A: Edit test_config.py
+echo "TEST_MODEL_SOLUTIONS = True" > test_config.py
+
+# Option B: Use environment variable
+export TEST_MODEL_SOLUTIONS=true  # On Windows: set TEST_MODEL_SOLUTIONS=true
+
+# Then run tests
+python -m pytest banking_system/level1/  # Tests working solutions
+```
+
+3. **Switch Back to Practice Mode:**
+```bash
+export TEST_MODEL_SOLUTIONS=false  # On Windows: set TEST_MODEL_SOLUTIONS=false
+python -m pytest banking_system/level1/  # Tests your implementation again
+```
+
 ### Using the Assessment Runner (Recommended)
 
 ```bash
