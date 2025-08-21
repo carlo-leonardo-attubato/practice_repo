@@ -17,26 +17,40 @@ class Store:
     
     def __init__(self):
         """Initialize the store."""
-        # TODO: Implement storage structure
-        pass
+        self.data = {}
     
     def set(self, key, value):
         """Store a key-value pair. Return the value stored."""
-        # TODO: Implement set operation
-        pass
+        self.data[key] = value
+        return value
     
     def get(self, key):
         """Retrieve a value by key. Return None if not found."""
-        # TODO: Implement get operation
-        pass
+        return self.data.get(key)
     
     def delete(self, key):
         """Remove a key-value pair. Return deleted value or None."""
-        # TODO: Implement delete operation
-        pass
+        if key in self.data:
+            value = self.data[key]
+            del self.data[key]
+            return value
+        return None
 
 
 # Quick test - uncomment when ready
 if __name__ == "__main__":
     store = Store()
-    print("Implement the Store class methods first!")
+    print("Store class implemented!")
+    
+    # Test basic functionality
+    store.set("key1", "value1")
+    print(f"Get key1: {store.get('key1')}")
+    
+    store.set("key2", "value2")
+    print(f"Get key2: {store.get('key2')}")
+    
+    deleted = store.delete("key1")
+    print(f"Deleted key1: {deleted}")
+    print(f"Get key1 after delete: {store.get('key1')}")
+    
+    print(f"Final store contents: {store.data}")

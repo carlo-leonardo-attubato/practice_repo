@@ -20,23 +20,26 @@ class UserStore:
     def __init__(self):
         """Initialize the user store."""
         # TODO: Use defaultdict(dict) for nested structure
-        pass
+        
+        self.users = defaultdict(dict)
     
     def add_user_field(self, user_id, field, value):
         """Add or update a field for a user."""
         # TODO: Implement nested dictionary update
-        pass
-    
+
+        self.users[user_id][field] = value
+
     def get_user_field(self, user_id, field):
         """Get a field value for a user. Return None if not found."""
         # TODO: Implement nested dictionary access
-        pass
+        self.users[user_id].get(field)
+
     
     def get_all_users_with_field(self, field, value):
         """Find all users with a specific field value."""
         # TODO: Implement filtering with list comprehension
-        pass
 
+        return [user_id for user_id in self.users.keys() if self.users[user_id][field] == value]
 
 # Quick test - uncomment when ready
 if __name__ == "__main__":
