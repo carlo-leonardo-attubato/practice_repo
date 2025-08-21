@@ -1,49 +1,127 @@
-# CodeSignal Speed Drill Practice Repository
+# CodeSignal Practice Repository
 
-## What You Have
+## Overview
+Practice CodeSignal assessments with progressive 4-level mock assessments that mirror the real CodeSignal format.
 
-✅ **Speed Drills** (unimplemented - for you to practice):
-- `basic_store.py` - Basic dictionary operations
-- `nested_userstore.py` - Nested dictionary patterns  
-- `ttl_store.py` - Time-based expiration (TTL)
-- `inventory_system.py` - List filtering operations
-- `backup_restore.py` - Backup/restore functionality
+## Repository Structure
 
-✅ **Unit Tests** (fully implemented and working):
-- `tests/test_01_basic_store.py` - Tests for basic store
-- `tests/test_02_nested_userstore.py` - Tests for user store
-- `tests/test_03_ttl_store.py` - Tests for TTL store
-- `tests/test_04_inventory_system.py` - Tests for inventory
-- `tests/test_05_backup_restore.py` - Tests for database
+```
+practice_repo/
+├── assessments/
+│   ├── inventory_system/          # Mock Assessment 1
+│   │   ├── level1/                # Basic CRUD (~100 pts)
+│   │   │   ├── candidate/         # Your implementation
+│   │   │   ├── model_solution/    # Working reference
+│   │   │   └── tests/             # Unit tests
+│   │   ├── level2/                # Enhanced features (~150 pts)
+│   │   ├── level3/                # Complex logic (~250 pts)
+│   │   └── level4/                # Advanced ops (~100 pts)
+│   ├── user_management/           # Mock Assessment 2 (coming soon)
+│   └── data_cache/                # Mock Assessment 3 (coming soon)
+├── assessment_runner.py           # Test runner
+└── README.md
+```
+
+## Available Assessments
+
+### 1. Inventory Management System
+**Total Points**: 600 (need 520+ to pass)
+
+- **Level 1** (15-20 min, ~100 pts): Basic CRUD operations
+- **Level 2** (20-25 min, ~150 pts): Filtering and search
+- **Level 3** (30-40 min, ~250 pts): Stock management and business logic ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): Advanced operations
+
+### 2. User Management System (Coming Soon)
+Progressive user authentication and authorization system.
+
+### 3. Data Cache System (Coming Soon)
+TTL-based caching system with persistence.
 
 ## How to Practice
 
-1. **Pick a speed drill** (start with `basic_store.py`)
-2. **Implement the methods** marked with TODO
-3. **Run the tests** to see if you pass
-4. **Move to the next drill** when current one passes
+### Option 1: Progressive Practice
+1. **Start with Level 1** of an assessment
+2. **Implement the required methods** in the candidate folder
+3. **Run tests** to verify your implementation
+4. **Move to Level 2** and build on your Level 1 code
+5. **Continue through Level 4**
 
-## Running Tests
+### Option 2: Study Mode
+1. **Study model solutions** to understand patterns
+2. **Run tests on model solutions** to see expected behavior
+3. **Practice implementing** from memory
+4. **Compare your solution** with the model
+
+### Option 3: Timed Assessment Mode
+1. **Run full 90-minute simulation** with timer
+2. **Focus on Level 3** for maximum points
+3. **Submit working code** even if imperfect
+
+## Running Assessments
+
+### Using the Assessment Runner (Recommended)
 
 ```bash
-# Test specific drill
-python -m pytest tests/test_01_basic_store.py -v
+# List available assessments
+python assessment_runner.py --list
 
-# Test all drills
-python -m pytest tests/ -v
+# Run full assessment on your implementation
+python assessment_runner.py inventory_system
 
-# Quick test from test file
-python tests/test_01_basic_store.py
+# Run specific level only
+python assessment_runner.py inventory_system --level level1
+
+# Test model solutions (to verify they work)
+python assessment_runner.py inventory_system --mode model
+
+# Timed 90-minute simulation
+python assessment_runner.py inventory_system --timed
+
+# Verbose output
+python assessment_runner.py inventory_system --verbose
 ```
 
-## Your Goal
-
-Implement each speed drill so that **ALL TESTS PASS**. This builds the muscle memory you need for CodeSignal.
+### Manual Testing
+```bash
+# Test specific level manually
+python -m pytest assessments/inventory_system/level1/tests/ -v
+```
 
 ## Assessment Strategy
 
-- **Level 1-2**: Basic CRUD operations (20-25 min)
-- **Level 3**: Complex filtering and search (40-50 min)  
-- **Level 4**: Advanced features and edge cases (15-20 min)
+### Time Management (90 minutes total)
+- **Levels 1-2**: 25 minutes (get basics working)
+- **Level 3**: 50 minutes ⭐ **FOCUS HERE - most points**
+- **Level 4**: 15 minutes (attempt what you can)
 
-**Remember**: Working code beats perfect code in CodeSignal!
+### Scoring Strategy
+- **Target**: 520+ out of 600 points (87% success rate)
+- **Level 3 is critical** - prioritize completing it over perfecting earlier levels
+- **Working code beats perfect code** - submit as soon as tests pass
+
+### Key Principles
+1. **Read ALL levels first** (5 minutes) to understand the big picture
+2. **Build progressively** - each level extends the previous
+3. **Don't refactor** - focus on making tests pass
+4. **Use simple data structures** - lists and dictionaries
+5. **Copy-paste between levels** - reuse working code
+
+## Progress Tracking
+
+Track your practice progress:
+- ✅ **Inventory System Level 1**: Basic CRUD
+- ⏳ **Inventory System Level 2**: Filtering & Search  
+- ⏳ **Inventory System Level 3**: Stock Management
+- ⏳ **Inventory System Level 4**: Advanced Operations
+
+## Getting Started
+
+1. **Choose an assessment**: Start with `inventory_system`
+2. **Run the model solution**: `python assessment_runner.py inventory_system --mode model`
+3. **Study the requirements**: Check the README in the assessment folder
+4. **Implement Level 1**: Start coding in the candidate folder
+5. **Test your solution**: `python assessment_runner.py inventory_system --level level1`
+6. **Progress to Level 2**: Build on your Level 1 implementation
+
+**Remember**: The goal is to build muscle memory for rapid implementation under time pressure!
