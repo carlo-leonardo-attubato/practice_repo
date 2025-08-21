@@ -12,6 +12,8 @@ Requirements:
 - Basic interaction statistics
 """
 
+import time
+
 
 class ModelWelfareTracker:
     """
