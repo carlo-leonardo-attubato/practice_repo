@@ -1,24 +1,23 @@
 """
-ANTHROPIC CODESIGNAL PATTERN: Command Parsing to OOP Conversion
-This shows how to convert the weird command parsing format to familiar OOP.
+LEVEL 3: Time-based Operations - MODEL SOLUTION
+Command-driven file system with TTL and timestamp operations.
 """
 
 import time
 from datetime import datetime
-from typing import List, Dict, Any, Optional
 
 
 class FileSystemSimulator:
-    """
-    The OOP version of what the command parser does.
-    This is the familiar pattern you understand.
-    """
+    """Advanced file system simulator with TTL and timestamps."""
     
     def __init__(self):
+        """Initialize the file system."""
         self.files = {}  # filename -> file_data
         self.upload_history = []  # For rollback functionality
     
-    def upload_file(self, filename: str, size: str, timestamp: float = None, ttl_seconds: int = None):
+    # =================== LEVEL 1-2 METHODS ===================
+    
+    def upload_file(self, filename, size, timestamp=None, ttl_seconds=None):
         """Upload a file with optional TTL."""
         current_time = timestamp or time.time()
         
@@ -39,7 +38,7 @@ class FileSystemSimulator:
         
         return f"uploaded{' at' if timestamp else ''} {filename}"
     
-    def get_file(self, filename: str, timestamp: float = None) -> Optional[str]:
+    def get_file(self, filename, timestamp=None):
         """Get a file if it exists and hasn't expired."""
         current_time = timestamp or time.time()
         
@@ -54,7 +53,7 @@ class FileSystemSimulator:
         
         return f"got{' at' if timestamp else ''} {filename}"
     
-    def copy_file(self, source: str, dest: str, timestamp: float = None) -> Optional[str]:
+    def copy_file(self, source, dest, timestamp=None):
         """Copy a file if source exists and hasn't expired."""
         current_time = timestamp or time.time()
         
@@ -84,7 +83,7 @@ class FileSystemSimulator:
         
         return f"copied{' at' if timestamp else ''} {source} to {dest}"
     
-    def search_files(self, query: str, timestamp: float = None) -> str:
+    def search_files(self, query, timestamp=None):
         """Search for files by name prefix."""
         current_time = timestamp or time.time()
         
@@ -98,35 +97,29 @@ class FileSystemSimulator:
             if filename.startswith(query):
                 matching_files.append(filename)
         
-        # Sort alphabetically (as shown in test)
+        # Sort alphabetically (as shown in Reddit test)
         matching_files.sort()
         
         return f"found{' at' if timestamp else ''} {matching_files}"
     
-    def rollback_to_time(self, target_time: float) -> str:
-        """Rollback system state to a specific time."""
-        # Remove all files uploaded after target time
-        files_to_remove = []
-        for filename, file_data in self.files.items():
-            if file_data['uploaded_at'] > target_time:
-                files_to_remove.append(filename)
+    def file_exists(self, filename, timestamp=None):
+        """Check if file exists and hasn't expired."""
+        current_time = timestamp or time.time()
         
-        for filename in files_to_remove:
-            del self.files[filename]
+        if filename not in self.files:
+            return False
         
-        # Clean up history
-        self.upload_history = [
-            entry for entry in self.upload_history 
-            if entry['timestamp'] <= target_time
-        ]
+        file_data = self.files[filename]
+        if file_data['expires_at'] and current_time > file_data['expires_at']:
+            return False
         
-        return f"rollback to {datetime.fromtimestamp(target_time).strftime('%Y-%m-%dT%H:%M:%S')}"
+        return True
 
 
-def simulate_coding_framework(commands: List[List[str]]) -> List[str]:
+def simulate_coding_framework(commands):
     """
-    THE COMMAND PARSER - This is what CodeSignal expects you to write.
-    This converts commands to OOP method calls.
+    MAIN FUNCTION: Parse commands and execute operations.
+    This is the EXACT pattern from the Reddit post.
     """
     
     fs = FileSystemSimulator()
@@ -194,85 +187,46 @@ def simulate_coding_framework(commands: List[List[str]]) -> List[str]:
             
             result = fs.search_files(query, timestamp)
             results.append(result)
-            
-        elif cmd_type == "ROLLBACK":
-            # ["ROLLBACK", "2021-07-01T12:10:00"]
-            timestamp_str = command[1]
-            timestamp = datetime.fromisoformat(timestamp_str).timestamp()
-            
-            result = fs.rollback_to_time(timestamp)
-            results.append(result)
     
     return results
 
 
-# =================== THE KEY INSIGHT ===================
-
-def convert_commands_to_oop_calls(commands: List[List[str]]) -> str:
-    """
-    Shows you how command parsing translates to familiar OOP method calls.
-    Study this to understand the conversion!
-    """
-    
-    oop_code = []
-    oop_code.append("fs = FileSystemSimulator()")
-    oop_code.append("results = []")
-    oop_code.append("")
-    
-    for i, command in enumerate(commands):
-        cmd_type = command[0]
-        oop_code.append(f"# Command {i+1}: {command}")
-        
-        if cmd_type == "FILE_UPLOAD":
-            filename, size = command[1], command[2]
-            oop_code.append(f"result = fs.upload_file('{filename}', '{size}')")
-            
-        elif cmd_type == "FILE_GET":
-            filename = command[1]
-            oop_code.append(f"result = fs.get_file('{filename}')")
-            
-        elif cmd_type == "FILE_COPY":
-            source, dest = command[1], command[2]
-            oop_code.append(f"result = fs.copy_file('{source}', '{dest}')")
-            
-        elif cmd_type == "FILE_SEARCH":
-            query = command[1]
-            oop_code.append(f"result = fs.search_files('{query}')")
-            
-        elif cmd_type == "ROLLBACK":
-            timestamp_str = command[1]
-            oop_code.append(f"result = fs.rollback_to_time(datetime.fromisoformat('{timestamp_str}').timestamp())")
-        
-        oop_code.append("results.append(result)")
-        oop_code.append("")
-    
-    return "\n".join(oop_code)
-
-
 if __name__ == "__main__":
-    # Test the conversion
-    test_commands = [
-        ["FILE_UPLOAD", "Cars.txt", "200kb"],
-        ["FILE_GET", "Cars.txt"],
-        ["FILE_COPY", "Cars.txt", "Cars2.txt"],
-        ["FILE_SEARCH", "Car"]
+    # Test with the EXACT Reddit examples
+    print("🎯 Testing EXACT Anthropic Pattern from Reddit")
+    print("="*60)
+    
+    # Test Group 1 (Level 1)
+    test_data_1 = [
+        ["FILE_UPLOAD", "Cars.txt", "200kb"], 
+        ["FILE_GET", "Cars.txt"], 
+        ["FILE_COPY", "Cars.txt", "Cars2.txt"], 
+        ["FILE_GET", "Cars2.txt"]
     ]
     
-    print("🎯 COMMAND PARSING PATTERN")
-    print("="*50)
-    print("Commands:", test_commands)
+    results_1 = simulate_coding_framework(test_data_1)
+    expected_1 = ["uploaded Cars.txt", "got Cars.txt", "copied Cars.txt to Cars2.txt", "got Cars2.txt"]
+    
+    print("Test 1 Results:", results_1)
+    print("Test 1 Expected:", expected_1)
+    print("Test 1 Match:", results_1 == expected_1)
     print()
     
-    print("🔄 CONVERTED TO FAMILIAR OOP:")
-    print("="*50)
-    print(convert_commands_to_oop_calls(test_commands))
+    # Test Group 2 (Level 2 - Search)
+    test_data_2 = [
+        ["FILE_UPLOAD", "Foo.txt", "100kb"], 
+        ["FILE_UPLOAD", "Bar.csv", "200kb"], 
+        ["FILE_UPLOAD", "Baz.pdf", "300kb"],
+        ["FILE_SEARCH", "Ba"]
+    ]
+    
+    results_2 = simulate_coding_framework(test_data_2)
+    expected_2 = ["uploaded Foo.txt", "uploaded Bar.csv", "uploaded Baz.pdf", "found ['Bar.csv', 'Baz.pdf']"]
+    
+    print("Test 2 Results:", results_2)
+    print("Test 2 Expected:", expected_2)
+    print("Test 2 Match:", str(results_2) == str(expected_2))
     print()
     
-    print("📋 ACTUAL EXECUTION:")
-    print("="*50)
-    results = simulate_coding_framework(test_commands)
-    for i, result in enumerate(results):
-        print(f"Result {i+1}: {result}")
-    
-    print("\n✅ This is the EXACT pattern Anthropic uses!")
-    print("Practice converting commands → OOP method calls → results!")
+    print("✅ This is the EXACT Anthropic CodeSignal pattern!")
+    print("Practice this command → OOP conversion!")

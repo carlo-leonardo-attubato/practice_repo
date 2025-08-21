@@ -26,7 +26,15 @@ practice_repo/
 
 ## Available Assessments
 
-### 1. Inventory Management System ✅ **COMPLETE**
+### 1. File System Commands ⭐ **EXACT ANTHROPIC PATTERN!**
+**Based on Reddit user who took Anthropic CodeSignal twice - SAME FORMAT BOTH TIMES**
+
+- **Level 1** (15-20 min, ~100 pts): Basic file operations (UPLOAD, GET, COPY)
+- **Level 2** (20-25 min, ~150 pts): Search operations (FILE_SEARCH)
+- **Level 3** (30-40 min, ~250 pts): TTL operations (*_AT commands) ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): Rollback functionality
+
+### 2. Inventory Management System ✅ **COMPLETE**
 **Total Points**: 600 (need 520+ to pass)
 
 - **Level 1** (15-20 min, ~100 pts): Basic CRUD operations
@@ -34,7 +42,7 @@ practice_repo/
 - **Level 3** (30-40 min, ~250 pts): Stock management and business logic ⭐ **FOCUS HERE**
 - **Level 4** (15-20 min, ~100 pts): Advanced operations
 
-### 2. Model Welfare Tracker ✅ **STRUCTURE COMPLETE**
+### 3. Model Welfare Tracker ✅ **STRUCTURE COMPLETE**
 **Anthropic-specific scenario** - AI model usage monitoring and welfare tracking
 
 - **Level 1** (15-20 min, ~100 pts): Model registration and interaction logging
@@ -42,7 +50,7 @@ practice_repo/
 - **Level 3** (30-40 min, ~250 pts): Welfare scoring and rate limiting ⭐ **FOCUS HERE**
 - **Level 4** (15-20 min, ~100 pts): System monitoring and management
 
-### 3. Banking System ✅ **STRUCTURE COMPLETE**
+### 4. Banking System ✅ **STRUCTURE COMPLETE**
 **Financial operations** - Account management and transaction processing
 
 - **Level 1** (15-20 min, ~100 pts): Basic account operations
@@ -50,7 +58,7 @@ practice_repo/
 - **Level 3** (30-40 min, ~250 pts): Financial logic and fraud detection ⭐ **FOCUS HERE**
 - **Level 4** (15-20 min, ~100 pts): System operations and compliance
 
-### 4. Chat Platform ✅ **STRUCTURE COMPLETE**
+### 5. Chat Platform ✅ **STRUCTURE COMPLETE**
 **Real-time messaging** - Message management and communication features
 
 - **Level 1** (15-20 min, ~100 pts): Basic messaging
@@ -58,7 +66,7 @@ practice_repo/
 - **Level 3** (30-40 min, ~250 pts): Advanced chat features and moderation ⭐ **FOCUS HERE**
 - **Level 4** (15-20 min, ~100 pts): Platform management
 
-### 5. Task Queue System ✅ **STRUCTURE COMPLETE**
+### 6. Task Queue System ✅ **STRUCTURE COMPLETE**
 **Job scheduling** - Priority queues and task management
 
 - **Level 1** (15-20 min, ~100 pts): Basic task operations
