@@ -24,7 +24,7 @@ practice_repo/
 
 ## Available Assessments
 
-### 1. Inventory Management System
+### 1. Inventory Management System ✅ **COMPLETE**
 **Total Points**: 600 (need 520+ to pass)
 
 - **Level 1** (15-20 min, ~100 pts): Basic CRUD operations
@@ -32,11 +32,37 @@ practice_repo/
 - **Level 3** (30-40 min, ~250 pts): Stock management and business logic ⭐ **FOCUS HERE**
 - **Level 4** (15-20 min, ~100 pts): Advanced operations
 
-### 2. User Management System (Coming Soon)
-Progressive user authentication and authorization system.
+### 2. Model Welfare Tracker 🚧 **IN PROGRESS**
+**Anthropic-specific scenario** - AI model usage monitoring and welfare tracking
 
-### 3. Data Cache System (Coming Soon)
-TTL-based caching system with persistence.
+- **Level 1** (15-20 min, ~100 pts): Model registration and interaction logging
+- **Level 2** (20-25 min, ~150 pts): Interaction analysis and filtering
+- **Level 3** (30-40 min, ~250 pts): Welfare scoring and rate limiting ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): System monitoring and management
+
+### 3. Banking System 🚧 **IN PROGRESS**
+**Financial operations** - Account management and transaction processing
+
+- **Level 1** (15-20 min, ~100 pts): Basic account operations
+- **Level 2** (20-25 min, ~150 pts): Transaction history and account types
+- **Level 3** (30-40 min, ~250 pts): Financial logic and fraud detection ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): System operations and compliance
+
+### 4. Chat Platform 🚧 **IN PROGRESS**
+**Real-time messaging** - Message management and communication features
+
+- **Level 1** (15-20 min, ~100 pts): Basic messaging
+- **Level 2** (20-25 min, ~150 pts): Message filtering and search
+- **Level 3** (30-40 min, ~250 pts): Advanced chat features and moderation ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): Platform management
+
+### 5. Task Queue System 🚧 **IN PROGRESS**
+**Job scheduling** - Priority queues and task management
+
+- **Level 1** (15-20 min, ~100 pts): Basic task operations
+- **Level 2** (20-25 min, ~150 pts): Priority and filtering
+- **Level 3** (30-40 min, ~250 pts): Dependencies and scheduling ⭐ **FOCUS HERE**
+- **Level 4** (15-20 min, ~100 pts): System operations
 
 ## How to Practice
 
